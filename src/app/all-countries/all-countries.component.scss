@@ -1,0 +1,59 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Lato';
+}
+
+.container {
+  margin: 0 50px;
+  text-align: center;
+}
+
+h2, h3, h4, p {
+  font-family: 'Lato';
+  margin: 10px;
+}
+
+h4 {
+  position: relative;
+  font-size: 1.25rem;
+}
+
+.country-unit {
+  width: 200px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.country-block {
+  transition: all 0.3s;
+  padding: 30px 0;
+  text-align: center;
+  color: white;
+  height: 150px;
+  background-color: #77afa0;
+  border-radius: 20px;
+
+  &:hover,
+  &:focus {
+    background-color: #45a88e;
+    cursor: pointer;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  h4 {
+    margin-bottom: 10px;
+  }
+}

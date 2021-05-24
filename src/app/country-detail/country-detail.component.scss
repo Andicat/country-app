@@ -1,0 +1,52 @@
+.container {
+  margin: 0 auto;
+  width: 350px;
+}
+
+h2 {
+  font-family: 'Lato';
+  text-align: center;
+}
+
+p {
+  font-family: 'Lato';
+  font-size: 1.25rem;
+
+  span {
+    color: #316e8a;
+    border-radius: 5px;
+    width: 180px;
+    display: inline-block;
+  }
+}
+
+label {
+  display: inline-block;
+  width: 3em;
+  margin: .5em 0;
+  color: #607D8B;
+  font-weight: bold;
+  font-family: 'Lato';
+}
+
+button {
+  transition: all 0.3s;
+  margin-top: 20px;
+  font-family: Arial;
+  background-color: #c7985f;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-family: 'Lato';
+
+  &:hover {
+    background-color: #c08033;
+  }
+
+  &.active {
+    color: #c47311;
+  }
+}
