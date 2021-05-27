@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
  
-import { Country } from '../country';
-import { CountryService } from '../country.service';
+import { Country, Language } from '../../country-data';
+import { CountryService } from '../../country.service';
  
 @Component({
   selector: 'app-country-detail',
@@ -11,12 +11,14 @@ import { CountryService } from '../country.service';
   styleUrls: ['./country-detail.component.scss']
 })
 export class CountryDetailComponent implements OnInit {
+  name: string;
   country!: Country;
+  isChanging: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private countryService: CountryService,
-    private location: Location //enable our application to interact with the browser's URL
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -24,11 +26,19 @@ export class CountryDetailComponent implements OnInit {
   }
 
   getCountry(): void {
-    const name: string = this.route.snapshot.paramMap.get('name')!;
-    this.country = this.countryService.getCountry(name)!;
+    this.name = this.route.snapshot.paramMap.get('name')!;
+    this.country = this.countryService.getCountry(this.name)!;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  toggleChangingMode(): void {
+    this.isChanging = !this.isChanging;
+  }
+
+  onChange(value: Language[]): void {
+    this.countryService.setLanguages(this.name, value);
   }
 }

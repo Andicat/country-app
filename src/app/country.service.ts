@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
- 
-import { Country } from './country';
-import { COUNTRIES } from './country-data';
+
+import { Country, COUNTRIES, Language } from './country-data';
  
 @Injectable()
 export class CountryService {
@@ -10,6 +9,10 @@ export class CountryService {
  
   getCountries(): Country[] {
     return COUNTRIES;
+  }
+
+  getFields(): string[] {
+    return Object.keys(new Country);
   }
  
   getPopulatedCountries(): Country[] {
@@ -26,5 +29,12 @@ export class CountryService {
  
   getCountry(name: string): Country|undefined {
     return COUNTRIES.find(country => country.name === name);
+  }
+
+  setLanguages(name: string, value: Language[]) {
+    let country = COUNTRIES.find(country => country.name === name);
+    if (country) {
+      country.languages = value;
+    }
   }
 }

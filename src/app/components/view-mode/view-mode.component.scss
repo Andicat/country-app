@@ -1,0 +1,20 @@
+.view-button {
+  transition: all 0.3s;
+  font-family: Arial;
+  background-color: #c7985f;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  font-family: 'Lato';
+
+  &:hover {
+    background-color: #c08033;
+  }
+
+  &.active {
+    color: #c47311;
+  }
+}

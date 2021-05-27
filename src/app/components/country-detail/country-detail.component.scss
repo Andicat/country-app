@@ -1,6 +1,6 @@
 .container {
   margin: 0 auto;
-  width: 350px;
+  width: 500px;
 }
 
 h2 {
@@ -8,7 +8,10 @@ h2 {
   text-align: center;
 }
 
-p {
+.row {
+  display: flex;
+  align-items: flex-start;
+  padding: 5px;
   font-family: 'Lato';
   font-size: 1.25rem;
 
@@ -17,6 +20,20 @@ p {
     border-radius: 5px;
     width: 180px;
     display: inline-block;
+  }
+
+  button {
+    margin: 0;
+    margin-left: 10px;
+    background-color: #6ba8c5;
+
+    &:hover {
+      background-color: #408db1;
+    }
+  
+    &.active {
+      color: #0a5a80;
+    }
   }
 }
 

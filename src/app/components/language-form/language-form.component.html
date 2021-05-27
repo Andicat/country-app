@@ -1,0 +1,9 @@
+<ng-select
+    [placeholder]="selectTitle"
+    [(ngModel)]="selectedLanguages"
+    [items]="languages"
+    [multiple]="true"
+    [hideSelected]="true"
+    (change)="onSelect()"
+  >
+</ng-select>

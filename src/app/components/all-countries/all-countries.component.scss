@@ -57,3 +57,24 @@ h4 {
     margin-bottom: 10px;
   }
 }
+
+.countries-table {
+  margin: 10px auto;
+  border-collapse: collapse;
+  border: 1px solid #77afa0;
+
+  tr {
+    display: table-row;
+  }
+
+  th {
+    padding: 10px 15px;
+    background-color: #77afa0;
+  }
+
+  td {
+    padding: 10px;
+    background-color: #c0dbd4;
+    border-top: 1px solid #77afa0;
+  }
+}

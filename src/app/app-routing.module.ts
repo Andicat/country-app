@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
  
-import { HomeComponent } from './home/home.component';
-import { AllCountriesComponent } from './all-countries/all-countries.component';
-import { CountryDetailComponent } from './country-detail/country-detail.component';
+import { HomeComponent } from './components/home/home.component';
+import { AllCountriesComponent } from './components/all-countries/all-countries.component';
+import { CountryDetailComponent } from './components/country-detail/country-detail.component';
  
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
