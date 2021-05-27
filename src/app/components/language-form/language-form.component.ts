@@ -9,12 +9,12 @@ import { Language } from '../../country-data';
 
 export class FormComponent {
   @Input() selectedLanguages: Language[];
-  @Output() change = new EventEmitter<Language[]>();
+  @Output() selectedLanguagesChange = new EventEmitter<Language[]>();
 
   languages = Object.keys(Language);
   selectTitle: string = 'Select languages...';
 
   onSelect(): void {
-    this.change.emit(this.selectedLanguages);
+    this.selectedLanguagesChange.emit(this.selectedLanguages);
   }
 }

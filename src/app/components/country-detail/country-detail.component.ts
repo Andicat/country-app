@@ -37,8 +37,4 @@ export class CountryDetailComponent implements OnInit {
   toggleChangingMode(): void {
     this.isChanging = !this.isChanging;
   }
-
-  onChange(value: Language[]): void {
-    this.countryService.setLanguages(this.name, value);
-  }
 }

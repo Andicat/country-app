@@ -25,7 +25,7 @@
     <div class="row">
       <span>Languages: </span>
       <ng-container *ngIf='isChanging; else languages'>
-        <language-form [selectedLanguages]="country.languages" (change)="onChange($event)"></language-form>
+        <language-form [(selectedLanguages)]="country.languages"></language-form>
         <button (click)="toggleChangingMode()">Ok</button>
       </ng-container>
     </div>
