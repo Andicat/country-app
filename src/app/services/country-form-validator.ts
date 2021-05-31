@@ -48,7 +48,7 @@ export class CountryValidator {
   }
 
   static words(control: AbstractControl) : ValidationErrors | null {
-    const pattern = `^[a-zA-Z ]+$`;
+    const pattern = `^[a-zA-Z,. ]+$`;
     const regex = new RegExp(pattern);
 
     if (regex.test(control.value)) {

@@ -48,7 +48,7 @@ export class CountryService {
   }
   
   private get initialValue(): Country[] {
-    let localValue =  localStorage.getItem(LocalStorageKey.CountryData);
+    let localValue =  localStorage.getItem(LocalStorageKey.CountriesData);
     if (localValue) {
       return JSON.parse(localValue);
     }
@@ -60,6 +60,6 @@ export class CountryService {
   }
 
   private saveInLocalStorage():void {
-    localStorage.setItem(LocalStorageKey.CountryData, JSON.stringify(this.countriesValue));
+    localStorage.setItem(LocalStorageKey.CountriesData, JSON.stringify(this.countriesValue));
   }
 }
