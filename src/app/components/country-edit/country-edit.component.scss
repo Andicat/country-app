@@ -1,0 +1,64 @@
+.container {
+  margin: 10px auto;
+  padding: 0;
+}
+
+legend {
+  margin-bottom: 16px;
+}
+
+.form-group {
+  padding: 0 20px;
+  margin: 10px 0;
+
+  label {
+    margin: 0;
+    margin-bottom: 2px;
+  }
+}
+
+.form-control.ng-invalid {
+  border-color: #dc3545;
+}
+
+.form-error {
+  font-size: 12px;
+  color: #dc3545;
+}
+
+.ng-select.ng-select-multiple .ng-select-container {
+  padding: 5px;
+
+  & .ng-value-container {
+    margin-top: -5px;
+    padding: 0;
+
+    & .ng-value {
+      background-color: #007bff;
+      border: none;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: row-reverse;
+      margin-top: 5px;
+      margin-right: 10px;
+      margin-bottom: 0;
+      padding: 0 6px 0 10px;
+      color: #fff;
+      line-height: 2;
+    }
+  } 
+}
+
+.ng-value-icon {
+  display: inline-flex;
+  height: 20px;
+  border-radius: 50%;
+  opacity: .6;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #007bff;
+  background-color: #fff;
+  align-self: center;
+  padding: 1px 4px;
+}

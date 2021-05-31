@@ -1,29 +1,44 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpClientModule }   from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CountryService } from './country.service';
 import { HomeComponent } from './components/home/home.component';
-import { AllCountriesComponent } from './components/all-countries/all-countries.component';
-import { CountryDetailComponent } from './components/country-detail/country-detail.component';
-import { ViewModeComponent } from './components/view-mode/view-mode.component';
-import { FormComponent } from './components/language-form/language-form.component';
-import { ListPipe} from './list.pipe';
+import { CountriesListComponent } from './components/countries-list/countries-list.component';
+import { CountryComponent } from './components/country/country.component';
+import { ViewModeComponent } from './components/view-mode-button/view-mode-button.component';
+import { CountryEditComponent } from './components/country-edit/country-edit.component';
+import { ListPipe} from './pipes/list.pipe';
+import { CountryService } from './services/country.service';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { ViewModeService } from './services/view-mode.service';
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, AllCountriesComponent, CountryDetailComponent, ViewModeComponent, FormComponent, ListPipe
+    AppComponent,
+    HomeComponent,
+    CountriesListComponent,
+    CountryComponent,
+    ViewModeComponent,
+    CountryEditComponent,
+    ListPipe,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [CountryService],
+  providers: [
+    CountryService,
+    ViewModeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

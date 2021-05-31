@@ -9,11 +9,7 @@ import { Location } from '@angular/common';
 
 export class AppComponent {
 
-  title = 'Fun Facts About Countries';
+  title = 'Facts About Countries';
 
   constructor( private location: Location ) { }
-
-  goBack(): void {
-    this.location.back();
-  }
 }

@@ -1,33 +1,31 @@
 <div class="container">
   <h2>Three Most Populated Countries</h2>
-  <div class="group">
-    <a *ngFor="let country of populatedCountries" class="country-unit" routerLink="/detail/{{country.name}}">
-      <div class="country-block">
-        <h4>{{country.name}}</h4>
-        <p>{{country.population | number}}</p>
-        <p>People</p>
+  <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
+    <a class="card text-white bg-warning shadow" *ngFor="let country of populatedCountries" routerLink="/countries/{{country.name}}">
+      <div class="card-header">{{country.name}}</div>
+      <div class="card-body">
+        <p class="card-text">{{country.population | number}}</p>
+        <p class="card-text">People</p>
       </div>
     </a>
   </div>
-  <br>
   <h2>Three Largest Countries (Area)</h2>
-  <div class="group">
-    <a *ngFor="let country of largestCountries" class="country-unit" routerLink="/detail/{{country.name}}">
-      <div class="country-block">
-        <h4>{{country.name}}</h4>
-        <p>{{country.area | number}} km
+  <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
+    <a class="card text-white bg-info shadow" *ngFor="let country of largestCountries" routerLink="/countries/{{country.name}}">
+      <div class="card-header">{{country.name}}</div>
+      <div class="card-body">
+        <p class="card-text">{{country.area | number}} km
           <sup>2</sup>
         </p>
       </div>
     </a>
   </div>
-  <br>
   <h2>Countries with Highest GDP</h2>
-  <div class="group">
-    <a *ngFor="let country of gdpCountries" class="country-unit" routerLink="/detail/{{country.name}}">
-      <div class="country-block">
-        <h4>{{country.name}}</h4>
-        <p>{{country.gdp | number}} USD</p>
+  <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
+    <a class="card text-white bg-danger shadow" *ngFor="let country of gdpCountries" routerLink="/countries/{{country.name}}">
+      <div class="card-header">{{country.name}}</div>
+      <div class="card-body">
+        <p class="card-text">{{country.gdp | number}} USD</p>
       </div>
     </a>
   </div>

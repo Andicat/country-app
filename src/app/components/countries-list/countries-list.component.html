@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>List of All the Countries in Our Database</h2>
+  <view-mode-button [(mode)]="viewModeService.mode"></view-mode-button>
+  <ng-container *ngTemplateOutlet="tableView ? table : cards"></ng-container>
+</div>
+
+<ng-template #cards>
+  <div class="d-flex flex-wrap justify-content-center mt-3">
+    <a class="card text-white bg-info shadow" *ngFor="let country of countries" routerLink="/countries/{{country.name}}">
+      <div class="card-header">{{country.name}}</div>
+      <div class="card-body">
+        <p class="card-text">Capital: {{country.capital}}</p>
+      </div>
+    </a>
+  </div>
+</ng-template>
+
+<ng-template #table>
+  <div class="shadow-lg mt-4 rounded">
+    <table class="table">
+      <thead>
+        <tr class="text-info">
+          <th>Name</th>
+          <th>Capital</th>
+          <th>Population</th>
+          <th>Languages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of countries">
+          <td>
+            <a routerLink="/countries/{{country.name}}">{{country.name}}</a>
+          </td>
+          <td>{{country.capital}}</td>
+          <td>{{country.population}}</td>
+          <td>{{country.languages | list}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+h2 {
+  font-family: 'Lato';
+  text-align: center;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

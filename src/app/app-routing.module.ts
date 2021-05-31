@@ -2,14 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
  
 import { HomeComponent } from './components/home/home.component';
-import { AllCountriesComponent } from './components/all-countries/all-countries.component';
-import { CountryDetailComponent } from './components/country-detail/country-detail.component';
- 
+import { CountriesListComponent } from './components/countries-list/countries-list.component';
+import { CountryComponent } from './components/country/country.component';
+import { CountryEditComponent } from './components/country-edit/country-edit.component';
+import { ApplicationRoute } from './enums/application-route';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'detail/:name', component: CountryDetailComponent },
-  { path: 'all-countries', component: AllCountriesComponent }
+  { path: '', redirectTo: ApplicationRoute.Home, pathMatch: 'full' },
+  { path: ApplicationRoute.Home, component: HomeComponent },
+  { path: 'countries', component: CountriesListComponent, pathMatch: 'full' },
+  { path: 'countries/:name', component: CountryComponent, },
+  { path: 'countries/:name/edit', component: CountryEditComponent },
+  { path: ApplicationRoute.PageNotFound, component: NotFoundPageComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: ApplicationRoute.Home }
 ];
  
 @NgModule({

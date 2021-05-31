@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card mt-3" *ngIf="country">
+    <div class="card-header font-weight-bold text-info">
+      <span>{{ country.name | uppercase }}</span>
+      <a href="#" class="btn btn-info" routerLink="/countries/{{country.name}}/edit">Edit</a>
+    </div>
+    <div class="card-body">
+      <p class="card-text row">
+        <span class="col-4 font-weight-bold">Capital:</span>
+        <span class="col-auto">{{country.capital}}</span>
+      </p>
+      <p class="card-text row">
+        <span class="col-4 font-weight-bold"> Area: </span>
+        <span class="col-auto">{{country.area | number}} km<sup>2</sup></span>
+      </p>
+      <p class="card-text row">
+        <span class="col-4 font-weight-bold"> Population: </span>
+        <span class="col-auto">{{country.population | number}}</span>
+      </p>
+      <p class="card-text row">
+        <span class="col-4 font-weight-bold"> GDP: </span>
+        <span class="col-auto">{{country.gdp | number}} USD</span>
+      </p>
+      <p class="card-text row">
+        <span class="col-4 font-weight-bold"> Currency: </span>
+        <span class="col-auto">{{country.currency}}</span>
+      </p>
+      <p class="card-text row">
+        <span class="col-4 font-weight-bold"> Languages: </span>
+        <span class="col-auto">{{country.languages | list}}</span>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Country } from '../../country-data';
-import { CountryService } from '../../country.service';
+import { Country } from 'src/app/interfaces/country';
+import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +30,6 @@ export class HomeComponent implements OnInit {
   }
 
   setGDPCountries(): void {
-    this.gdpCountries = this.countryService.getGDPCountries();
+    this.gdpCountries = this.countryService.getBestGDPCountries();
   }
 }

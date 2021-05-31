@@ -1,25 +1,9 @@
 nav {
   margin: 0px;
   text-align: center;
-
+  
   a {
-    transition: all 0.3s;
-    padding: 10px;
-    text-decoration: none;
-    margin: 10px;
-    display: inline-block;
-    background-color: #c7985f;
-    color: white;
-    border-radius: 5px;
-    font-family: 'Lato';
-
-    &:hover {
-      background-color: #c08033;
-    }
-    
-    &.active {
-      color: #c47311;
-    }
+    margin: 5px;
   }
 }
 

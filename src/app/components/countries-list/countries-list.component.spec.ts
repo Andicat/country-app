@@ -1,26 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CountryService } from 'src/app/services/country.service';
+import { ViewModeService } from 'src/app/services/view-mode.service';
 
-import { HomeComponent } from './home.component';
+import { CountriesListComponent } from './countries-list.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('CountriesListComponent', () => {
+  let component: CountriesListComponent;
+  let fixture: ComponentFixture<CountriesListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
+      declarations: [ CountriesListComponent ],
       imports: [RouterTestingModule],
-      providers: [
-        { provide: CountryService }
-      ],
+      providers: [ CountryService, ViewModeService ],
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(CountriesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
