@@ -13,14 +13,19 @@ const routes: Routes = [
   { path: ApplicationRoute.PageNotFound, component: NotFoundPageComponent, pathMatch: 'full' },
   { path: ApplicationRoute.Home, component: HomeComponent },
   { path: 'countries', component: CountriesListComponent, pathMatch: 'full' },
-  { path: 'countries/:name', component: CountryComponent },
-  { path: 'countries/:name/edit', component: CountryEditComponent },
+  {
+    path: 'countries/:name',
+    children: [
+      { path: '', component: CountryComponent },
+      { path: 'edit', component: CountryEditComponent },
+    ],
+  },
   { path: ApplicationRoute.PageNotFound, component: NotFoundPageComponent, pathMatch: 'full' },
   { path: '**', redirectTo: ApplicationRoute.Home },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { paramsInheritanceStrategy: 'always' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -22,7 +22,7 @@ export const countriesData: Country[] = [
     capital: 'Beijing',
     area: 9596961,
     population: 1403500365,
-    currency: 'Renminbi (Yuan)',
+    currency: 'Yuan',
     gdp: 11199145,
   },
   {
