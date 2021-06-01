@@ -9,10 +9,9 @@ describe('ViewModeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewModeComponent ],
+      declarations: [ViewModeComponent],
       imports: [RouterTestingModule],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

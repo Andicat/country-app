@@ -1,62 +1,45 @@
 <div class="container shadow-lg card mt-3 rounded">
-  <form [formGroup]="countryForm" novalidate (submit)="submit(countryForm.value)">
+  <form [formGroup]="countryForm" (submit)="submit(countryForm.value)" novalidate >
     <legend class="card-header font-weight-bold text-info">{{ country.name | uppercase }}</legend>
     <div class="form-group">
-      <label>Capital</label>
-      <input class="form-control" name="capital" formControlName="capital"  autocomplete="off" />
-      <div class="form-error"
-        *ngIf="countryForm.controls['capital'].getError('invalidValue')">
-        {{countryForm.controls['capital'].getError('invalidValue')}}
-      </div>
+      <label for="capital">Capital</label>
+      <input class="form-control" id="capital" name="capital" formControlName="capital"  autocomplete="off" />
+      <div class="form-error mt-1">{{countryForm.controls["capital"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
-      <label>Area, km<sup>2</sup></label>
-      <input class="form-control" name="area" formControlName="area" autocomplete="off"/>
-      <div class="form-error"
-        *ngIf="countryForm.controls['area'].getError('invalidValue')">
-        {{countryForm.controls['area'].getError('invalidValue')}}
-      </div>
+      <label for="area">Area, km<sup>2</sup></label>
+      <input class="form-control" id="area" name="area" formControlName="area" autocomplete="off"/>
+      <div class="form-error mt-1">{{countryForm.controls["area"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
-      <label>Population, people</label>
-      <input class="form-control" name="population" formControlName="population" autocomplete="off" />
-      <div class="form-error"
-        *ngIf="countryForm.controls['population'].getError('invalidValue')">
-        {{countryForm.controls['population'].getError('invalidValue')}}
-      </div>
+      <label for="population">Population, people</label>
+      <input class="form-control" id="population" name="population" formControlName="population" autocomplete="off" />
+      <div class="form-error mt-1">{{countryForm.controls["population"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
-      <label>GDP, USD</label>
-      <input class="form-control" name="gdp" formControlName="gdp" autocomplete="off" />
-      <div class="form-error"
-        *ngIf="countryForm.controls['gdp'].getError('invalidValue')">
-        {{countryForm.controls['gdp'].getError('invalidValue')}}
-      </div>
+      <label for="gdp">GDP, USD</label>
+      <input class="form-control" id="gdp" name="gdp" formControlName="gdp" autocomplete="off" />
+      <div class="form-error mt-1">{{countryForm.controls["gdp"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
-      <label>Currency</label>
-      <input class="form-control" name="currency" formControlName="currency" autocomplete="off" />
-      <div class="form-error"
-        *ngIf="countryForm.controls['currency'].getError('invalidValue')">
-        {{countryForm.controls['currency'].getError('invalidValue')}}
-      </div>
+      <label for="currency">Currency</label>
+      <input class="form-control" id="currency" name="currency" formControlName="currency" autocomplete="off" />
+      <div class="form-error mt-1">{{countryForm.controls["currency"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
-      <label>Languages</label>
+      <label for="languages">Languages</label>
       <ng-select
+        id="languages"
         [items]="languages"
-        formControlName="languages"
         [multiple]="true"
         [hideSelected]="true"
+        formControlName="languages"
+        ngDefaultControl
       >
       </ng-select>
-      <div class="form-error"
-        *ngIf="countryForm.controls['languages'].getError('invalidValue')">
-        {{countryForm.controls['languages'].getError('invalidValue')}}
-      </div>
     </div>
     <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary mr-3" [disabled]="countryForm.invalid">Save</button>
+        <button type="submit" class="btn btn-primary me-3" [disabled]="countryForm.invalid">Save</button>
         <button type="reset" class="btn btn-primary" (click)="goBack()">Go Back</button>
     </div>
   </form>

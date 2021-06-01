@@ -1,4 +1,4 @@
-import { Country } from "../interfaces/country";
+import { Country } from '../interfaces/country';
 
 export const countriesData: Country[] = [
   {
@@ -7,7 +7,7 @@ export const countriesData: Country[] = [
     area: 17098246,
     population: 144463451,
     currency: 'Russian Ruble',
-    gdp: 1283162
+    gdp: 1283162,
   },
   {
     name: 'Canada',
@@ -15,7 +15,7 @@ export const countriesData: Country[] = [
     area: 9984670,
     population: 35151728,
     currency: 'Canadian Dollar',
-    gdp: 159760
+    gdp: 159760,
   },
   {
     name: 'China',
@@ -23,7 +23,7 @@ export const countriesData: Country[] = [
     area: 9596961,
     population: 1403500365,
     currency: 'Renminbi (Yuan)',
-    gdp: 11199145
+    gdp: 11199145,
   },
   {
     name: 'United States',
@@ -31,7 +31,7 @@ export const countriesData: Country[] = [
     area: 9525067,
     population: 325365189,
     currency: 'United States Dollar',
-    gdp: 18569100
+    gdp: 18569100,
   },
   {
     name: 'Japan',
@@ -39,6 +39,6 @@ export const countriesData: Country[] = [
     area: 377972,
     population: 12676200,
     currency: 'Yen',
-    gdp: 4939384
-  }
+    gdp: 4939384,
+  },
 ];

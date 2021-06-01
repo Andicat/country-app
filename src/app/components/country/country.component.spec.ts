@@ -10,11 +10,10 @@ describe('CountryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
-      declarations: [ CountryComponent ],
-      providers: [ CountryService ],
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [CountryComponent],
+      providers: [CountryService],
+    }).compileComponents();
   });
 
   beforeEach(() => {

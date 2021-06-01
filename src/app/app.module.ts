@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClientModule }   from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +11,7 @@ import { CountriesListComponent } from './components/countries-list/countries-li
 import { CountryComponent } from './components/country/country.component';
 import { ViewModeComponent } from './components/view-mode-button/view-mode-button.component';
 import { CountryEditComponent } from './components/country-edit/country-edit.component';
-import { ListPipe} from './pipes/list.pipe';
+import { ListPipe } from './pipes/list.pipe';
 import { CountryService } from './services/country.service';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { ViewModeService } from './services/view-mode.service';
@@ -27,18 +27,8 @@ import { ViewModeService } from './services/view-mode.service';
     ListPipe,
     NotFoundPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NgSelectModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    CountryService,
-    ViewModeService
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule, HttpClientModule],
+  providers: [CountryService, ViewModeService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

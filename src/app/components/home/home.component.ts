@@ -5,17 +5,16 @@ import { CountryService } from 'src/app/services/country.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-
 export class HomeComponent implements OnInit {
   populatedCountries: Country[] = [];
   largestCountries: Country[] = [];
   gdpCountries: Country[] = [];
 
-  constructor(private countryService: CountryService) { }
+  constructor(private countryService: CountryService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setPopulatedCountries();
     this.setLargestCountries();
     this.setGDPCountries();

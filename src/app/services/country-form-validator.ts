@@ -3,20 +3,22 @@ import { ValidationMessages } from '../enums/validation-messages';
 import { Country } from '../interfaces/country';
 
 export class CountryValidator {
-  
   static requiredWithTrim(control: AbstractControl): ValidationErrors | null {
     if (control.value == null || String(control.value).trim().length === 0) {
-      return { invalidValue: ValidationMessages.Required }
+      return { invalidValue: ValidationMessages.Required };
     }
+
     return null;
   }
 
-  static unique(array:Country[], name: string) : (control: AbstractControl) => ValidationErrors | null {
+  static unique(array: Country[], name: keyof Country): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl) => {
-      let notUnique = array.find(item => item[name as keyof Country] === control.value);
+      const notUnique = array.find(item => item[name] === control.value);
+
       if (notUnique) {
         return { invalidValue: ValidationMessages.Unique };
       }
+
       return null;
     };
   }
@@ -26,34 +28,39 @@ export class CountryValidator {
   }
 
   static positiveNumber(control: AbstractControl): ValidationErrors | null {
-    return !CountryValidator.number(control) && control.value > 0 ? null : { invalidValue: ValidationMessages.PositiveNumber } ;
+    return !CountryValidator.number(control) && control.value > 0
+      ? null
+      : { invalidValue: ValidationMessages.PositiveNumber };
   }
 
-  static minNumber(minValue:number) : (control: AbstractControl) => ValidationErrors | null {
+  static minNumber(minValue: number): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!CountryValidator.number(control) && control.value >= minValue) {
         return null;
       }
+
       return { invalidValue: ValidationMessages.MinValue + minValue };
     };
   }
 
-  static maxNumber(maxValue:number) : (control: AbstractControl) => ValidationErrors | null {
+  static maxNumber(maxValue: number): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!CountryValidator.number(control) && control.value <= maxValue) {
         return null;
       }
+
       return { invalidValue: ValidationMessages.MaxValue + maxValue };
     };
   }
 
-  static words(control: AbstractControl) : ValidationErrors | null {
+  static words(control: AbstractControl): ValidationErrors | null {
     const pattern = `^[a-zA-Z,. ]+$`;
     const regex = new RegExp(pattern);
 
     if (regex.test(control.value)) {
       return null;
     }
+
     return { invalidValue: ValidationMessages.Words };
   }
 

@@ -1,4 +1,4 @@
 export enum LocalStorageKey {
   ViewMode = 'viewMode',
-  CountriesData = 'countriesData'
+  CountriesData = 'countriesData',
 }

@@ -8,58 +8,70 @@ import { countriesData } from '../mocks/country-data';
 @Injectable()
 export class CountryService {
   private countriesValue = this.initialValue;
-    
-  constructor(
-    private router: Router
-  ) {}
+
+  constructor(private router: Router) {}
 
   get countries(): Country[] {
     return this.countriesValue;
   }
 
-  getCountry(name: string): Country|undefined {
-    let countryValue = this.countries.find(country => country.name === name);
+  getCountry(name: string): Country | undefined {
+    const countryValue = this.countries.find(country => country.name === name);
+
     if (!countryValue) {
       this.router.navigate([ApplicationRoute.PageNotFound]);
     }
+
     return countryValue;
   }
 
   getPopulatedCountries(): Country[] {
-    return this.getSliced(this.countriesValue.sort((a, b) => b.population - a.population), 3);
+    return this.getSliced(
+      this.countriesValue.sort((a, b) => b.population - a.population),
+      3,
+    );
   }
 
   getLargestCountries(): Country[] {
-    return this.getSliced(this.countriesValue.sort((a, b) => b.area - a.area), 3);
+    return this.getSliced(
+      this.countriesValue.sort((a, b) => b.area - a.area),
+      3,
+    );
   }
 
   getBestGDPCountries(): Country[] {
-    return this.getSliced(this.countriesValue.sort((a, b) => b.gdp - a.gdp), 3);
+    return this.getSliced(
+      this.countriesValue.sort((a, b) => b.gdp - a.gdp),
+      3,
+    );
   }
 
-  saveCountry(countryForChange:Country,value:any) {
-    this.countriesValue = this.countriesValue.map( (country:Country) => {
-      if (country === countryForChange) {
-        return Object.assign(country, value);
+  saveCountry(name: string, value: Country): void {
+    this.countriesValue = this.countriesValue.map((country: Country) => {
+      if (country.name === name) {
+        return value;
       }
+
       return country;
     });
     this.saveInLocalStorage();
   }
-  
+
   private get initialValue(): Country[] {
-    let localValue =  localStorage.getItem(LocalStorageKey.CountriesData);
+    const localValue = localStorage.getItem(LocalStorageKey.CountriesData);
+
     if (localValue) {
       return JSON.parse(localValue);
     }
+
     return countriesData;
   }
 
-  private getSliced(arr:Country[], nmb:number): Country[] {
+  private getSliced(arr: Country[], nmb: number): Country[] {
     return arr.slice(0, nmb);
   }
 
-  private saveInLocalStorage():void {
+  private saveInLocalStorage(): void {
     localStorage.setItem(LocalStorageKey.CountriesData, JSON.stringify(this.countriesValue));
   }
 }

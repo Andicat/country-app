@@ -5,5 +5,5 @@ export enum ValidationMessages {
   Number = 'The value must be a number',
   PositiveNumber = 'This field must be a positive number',
   MinValue = 'This value must be greater or equal than ',
-  MaxValue = 'This value must be less or equal than '
-};
+  MaxValue = 'This value must be less or equal than ',
+}
