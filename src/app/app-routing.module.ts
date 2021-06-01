@@ -10,6 +10,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 
 const routes: Routes = [
   { path: '', redirectTo: ApplicationRoute.Home, pathMatch: 'full' },
+  { path: ApplicationRoute.PageNotFound, component: NotFoundPageComponent, pathMatch: 'full' },
   { path: ApplicationRoute.Home, component: HomeComponent },
   { path: 'countries', component: CountriesListComponent, pathMatch: 'full' },
   { path: 'countries/:name', component: CountryComponent },
