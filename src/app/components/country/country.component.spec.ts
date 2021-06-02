@@ -10,7 +10,7 @@ describe('CountryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule.withRoutes([])],
       declarations: [CountryComponent],
       providers: [CountryService],
     }).compileComponents();

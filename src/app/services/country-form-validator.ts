@@ -1,8 +1,11 @@
+import { DecimalPipe } from '@angular/common';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { ValidationMessages } from '../enums/validation-messages';
 import { Country } from '../interfaces/country';
 
 export class CountryValidator {
+  static decimalPipe: DecimalPipe = new DecimalPipe('en-us');
+
   static requiredWithTrim(control: AbstractControl): ValidationErrors | null {
     if (control.value == null || String(control.value).trim().length === 0) {
       return { invalidValue: ValidationMessages.Required };
@@ -24,18 +27,21 @@ export class CountryValidator {
   }
 
   static number(control: AbstractControl): ValidationErrors | null {
-    return control.value && isNaN(Number(control.value)) ? { invalidValue: ValidationMessages.Number } : null;
+    let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+    return value && isNaN(Number(value)) ? { invalidValue: ValidationMessages.Number } : null;
   }
 
   static positiveNumber(control: AbstractControl): ValidationErrors | null {
-    return !CountryValidator.number(control) && control.value > 0
+    let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+    return !CountryValidator.number(control) && value > 0
       ? null
       : { invalidValue: ValidationMessages.PositiveNumber };
   }
 
   static minNumber(minValue: number): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
-      if (!CountryValidator.number(control) && control.value >= minValue) {
+      let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+      if (!CountryValidator.number(control) && value >= minValue) {
         return null;
       }
 
@@ -45,11 +51,12 @@ export class CountryValidator {
 
   static maxNumber(maxValue: number): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
-      if (!CountryValidator.number(control) && control.value <= maxValue) {
+      let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+      if (!CountryValidator.number(control) && value <= maxValue) {
         return null;
       }
 
-      return { invalidValue: ValidationMessages.MaxValue + maxValue };
+      return { invalidValue: `${ValidationMessages.MaxValue} ${this.decimalPipe.transform(maxValue)}` };
     };
   }
 
@@ -63,54 +70,4 @@ export class CountryValidator {
 
     return { invalidValue: ValidationMessages.Words };
   }
-
-  /*static nonEmptyList(control: AbstractControl): ValidationErrors | null {
-    if (Array.isArray(control.value) && control.value.length > 0) {
-      return null;
-    }
-
-    return { [ValidationType.NonEmptyList]: true };
-  }
-
-  static minListLength(minLength: number): (control: AbstractControl) => ValidationErrors | null {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (Array.isArray(control.value) && control.value.length >= minLength) {
-        return null;
-      }
-
-      return { [ValidationType.MinListLength]: { minLength } };
-    };
-  }
-
-  static valueLength(length: number): (control: AbstractControl) => ValidationErrors | null {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (control.value && control.value.length === length) {
-        return null;
-      }
-
-      return { [ValidationType.ValueLength]: { length } };
-    };
-  }
-
-  static number(control: AbstractControl): ValidationErrors | null {
-    return control.value && isNaN(Number(control.value)) ? { [ValidationType.Number]: true } : null;
-  }
-
-  static positiveNumber(control: AbstractControl): ValidationErrors | null {
-    return !ApolloValidators.number(control) && control.value > 0 ? null : { [ValidationType.PositiveNumber]: true };
-  }
-
-  static notificationLimit(control: AbstractControl): ValidationErrors | null {
-    return !control.value || (!ApolloValidators.number(control) && control.value > 0)
-      ? null
-      : { [ValidationType.PositiveNumber]: true };
-  }
-
-  static requiredWithTrim(control: AbstractControl): ValidationErrors | null {
-    return control.value == null || String(control.value).trim().length === 0
-      ? { [ValidationType.Required]: true }
-      : null;
-  }
-
-  */
 }

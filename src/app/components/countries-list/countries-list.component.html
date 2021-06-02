@@ -1,6 +1,7 @@
 <div class="container">
   <h2>List of All the Countries in Our Database</h2>
   <view-mode-button [(mode)]="viewModeService.mode"></view-mode-button>
+  <a href="#" class="btn btn-primary ms-3" routerLink="/countries/add">Add new country</a>
   <ng-container *ngTemplateOutlet="tableView ? table : cards"></ng-container>
 </div>
 

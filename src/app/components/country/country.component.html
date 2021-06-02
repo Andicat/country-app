@@ -1,8 +1,9 @@
 <div class="container">
   <div class="card mt-3" *ngIf="country">
     <div class="card-header font-weight-bold text-info">
-      <span>{{ country.name | uppercase }}</span>
-      <a href="#" class="btn btn-primary" routerLink="/countries/{{country.name}}/edit">Edit</a>
+      <span class="me-auto">{{ country.name | uppercase }}</span>
+      <a href="#" class="btn btn-primary me-3" routerLink="/countries/{{country.name}}/edit">Edit</a>
+      <button class="btn btn-danger" (click)="deleteCountry()">Delete</button>
     </div>
     <div class="card-body">
       <p class="card-text row">

@@ -12,12 +12,17 @@ const routes: Routes = [
   { path: '', redirectTo: ApplicationRoute.Home, pathMatch: 'full' },
   { path: ApplicationRoute.PageNotFound, component: NotFoundPageComponent, pathMatch: 'full' },
   { path: ApplicationRoute.Home, component: HomeComponent },
-  { path: 'countries', component: CountriesListComponent, pathMatch: 'full' },
   {
-    path: 'countries/:name',
+    path: 'countries',
     children: [
-      { path: '', component: CountryComponent },
-      { path: 'edit', component: CountryEditComponent },
+      { path: '', component: CountriesListComponent, pathMatch: 'full' },
+      { path: 'add', component: CountryEditComponent, data: { mode: 'add' }, pathMatch: 'full' },
+      { path: ':name',
+        children: [
+          { path: '', component: CountryComponent, pathMatch: 'full' },
+          { path: 'edit', component: CountryEditComponent, data: { mode: 'edit' }}
+        ],
+      },
     ],
   },
   { path: '**', redirectTo: ApplicationRoute.Home },

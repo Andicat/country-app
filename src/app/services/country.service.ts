@@ -4,12 +4,13 @@ import { ApplicationRoute } from '../enums/application-route';
 import { LocalStorageKey } from '../enums/local-storage-key.enum';
 import { Country } from '../interfaces/country';
 import { countriesData } from '../mocks/country-data';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class CountryService {
   private countriesValue = this.initialValue;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private localStorageService: LocalStorageService) {}
 
   get countries(): Country[] {
     return this.countriesValue;
@@ -54,24 +55,23 @@ export class CountryService {
 
       return country;
     });
-    this.saveInLocalStorage();
+    this.localStorageService.setItem(LocalStorageKey.CountriesData, this.countriesValue);
+  }
+
+  addCountry(value: Country): void {
+    this.countriesValue.push(value);
+    this.localStorageService.setItem(LocalStorageKey.CountriesData, this.countriesValue);
+  }
+
+  deleteCountry(name: String): void {
+    this.countriesValue = this.countriesValue.filter(country => country.name !== name);
   }
 
   private get initialValue(): Country[] {
-    const localValue = localStorage.getItem(LocalStorageKey.CountriesData);
-
-    if (localValue) {
-      return JSON.parse(localValue);
-    }
-
-    return countriesData;
+    return this.localStorageService.getItem(LocalStorageKey.CountriesData) || countriesData;
   }
 
   private getSliced(arr: Country[], nmb: number): Country[] {
     return arr.slice(0, nmb);
-  }
-
-  private saveInLocalStorage(): void {
-    localStorage.setItem(LocalStorageKey.CountriesData, JSON.stringify(this.countriesValue));
   }
 }
