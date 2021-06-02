@@ -33,7 +33,16 @@ import { LocalStorageService } from './services/local-storage.service';
     ListPipe,
     NotFoundPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, NgSelectModule, ReactiveFormsModule, HttpClientModule, OverlayModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    OverlayModule,
+    BrowserAnimationsModule,
+  ],
   providers: [CountryService, ViewModeService, DecimalPipe, SnackbarService, MatSnackBar, LocalStorageService],
   bootstrap: [AppComponent],
 })

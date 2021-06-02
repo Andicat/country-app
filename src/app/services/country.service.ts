@@ -63,7 +63,7 @@ export class CountryService {
     this.localStorageService.setItem(LocalStorageKey.CountriesData, this.countriesValue);
   }
 
-  deleteCountry(name: String): void {
+  deleteCountry(name: string): void {
     this.countriesValue = this.countriesValue.filter(country => country.name !== name);
   }
 

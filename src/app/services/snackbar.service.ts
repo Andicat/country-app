@@ -11,7 +11,7 @@ export class SnackbarService {
     success: 'bg-success',
     warning: 'bg-warning',
   };
-  
+
   constructor(private snackBar: MatSnackBar) {}
 
   success(message: string) {
@@ -27,8 +27,7 @@ export class SnackbarService {
   }
 
   openSnackBar(message: string, status: string): void {
-    this.snackBar.open(message,'',
-    {
+    this.snackBar.open(message, '', {
       duration: this.SNACK_DURATION,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',

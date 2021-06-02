@@ -16,10 +16,10 @@ export class CountryComponent implements OnInit {
   country: Country | undefined;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private countryService: CountryService,
     private location: Location,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
   ) {}
 
   ngOnInit(): void {

@@ -27,20 +27,21 @@ export class CountryValidator {
   }
 
   static number(control: AbstractControl): ValidationErrors | null {
-    let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+    const value = this.toNumber(control);
+
     return value && isNaN(Number(value)) ? { invalidValue: ValidationMessages.Number } : null;
   }
 
   static positiveNumber(control: AbstractControl): ValidationErrors | null {
-    let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
-    return !CountryValidator.number(control) && value > 0
-      ? null
-      : { invalidValue: ValidationMessages.PositiveNumber };
+    const value = this.toNumber(control);
+
+    return !CountryValidator.number(control) && value > 0 ? null : { invalidValue: ValidationMessages.PositiveNumber };
   }
 
   static minNumber(minValue: number): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
-      let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+      const value = this.toNumber(control);
+
       if (!CountryValidator.number(control) && value >= minValue) {
         return null;
       }
@@ -51,7 +52,8 @@ export class CountryValidator {
 
   static maxNumber(maxValue: number): (control: AbstractControl) => ValidationErrors | null {
     return (control: AbstractControl): ValidationErrors | null => {
-      let value = (control.value && !Number(control.value)) ? control.value.replace(/\D/g,'') : control.value;
+      const value = this.toNumber(control);
+
       if (!CountryValidator.number(control) && value <= maxValue) {
         return null;
       }
@@ -69,5 +71,9 @@ export class CountryValidator {
     }
 
     return { invalidValue: ValidationMessages.Words };
+  }
+
+  static toNumber(control: AbstractControl) {
+    return control.value && !Number(control.value) ? control.value.replace(/\D/g, '') : control.value;
   }
 }

@@ -17,10 +17,11 @@ const routes: Routes = [
     children: [
       { path: '', component: CountriesListComponent, pathMatch: 'full' },
       { path: 'add', component: CountryEditComponent, data: { mode: 'add' }, pathMatch: 'full' },
-      { path: ':name',
+      {
+        path: ':name',
         children: [
           { path: '', component: CountryComponent, pathMatch: 'full' },
-          { path: 'edit', component: CountryEditComponent, data: { mode: 'edit' }}
+          { path: 'edit', component: CountryEditComponent, data: { mode: 'edit' } },
         ],
       },
     ],
