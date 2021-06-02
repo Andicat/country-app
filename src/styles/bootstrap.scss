@@ -84,7 +84,6 @@ button.bg-dark:focus {
   padding: 5px;
 
   & .ng-value-container {
-    margin-top: -5px;
     padding: 0;
 
     & .ng-value {
@@ -93,9 +92,7 @@ button.bg-dark:focus {
       border-radius: 15px;
       display: flex;
       flex-direction: row-reverse;
-      margin-top: 5px;
-      margin-right: 10px;
-      margin-bottom: 0;
+      margin: 2px 5px;
       padding: 0 6px 0 10px;
       color: #fff;
       line-height: 2;
