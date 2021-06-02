@@ -20,7 +20,6 @@ const routes: Routes = [
       { path: 'edit', component: CountryEditComponent },
     ],
   },
-  { path: ApplicationRoute.PageNotFound, component: NotFoundPageComponent, pathMatch: 'full' },
   { path: '**', redirectTo: ApplicationRoute.Home },
 ];
 
