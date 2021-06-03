@@ -1,23 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { ApplicationRoute } from '../enums/application-route';
-import { LocalStorageKey } from '../enums/local-storage-key.enum';
 import { Country } from '../interfaces/country';
-import { countriesData } from '../mocks/country-data';
-import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class CountryService {
-  private countriesValue = this.initialValue;
+  private url = `https://run.mocky.io/v3/bc8c37ef-20b8-4b00-8437-9548a8477307`;
 
-  constructor(private router: Router, private localStorageService: LocalStorageService) {}
+  private countries$: BehaviorSubject<Country[]> = new BehaviorSubject<Country[]>([]);
 
-  get countries(): Country[] {
-    return this.countriesValue;
+  constructor(private router: Router, private http: HttpClient) {
+    this.loadCountries();
+  }
+
+  loadCountries() {
+    this.http.get(this.url).subscribe(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (data: any) => {
+        this.countries$.next(data);
+      },
+    );
+  }
+
+  getCountries(): BehaviorSubject<Country[]> {
+    return this.countries$;
   }
 
   getCountry(name: string): Country | undefined {
-    const countryValue = this.countries.find(country => country.name === name);
+    const countryValue = this.countries$.getValue().find(country => country.name === name);
 
     if (!countryValue) {
       this.router.navigate([ApplicationRoute.PageNotFound]);
@@ -28,47 +40,43 @@ export class CountryService {
 
   getPopulatedCountries(): Country[] {
     return this.getSliced(
-      this.countriesValue.sort((a, b) => b.population - a.population),
+      this.countries$.getValue().sort((a, b) => b.population - a.population),
       3,
     );
   }
 
   getLargestCountries(): Country[] {
     return this.getSliced(
-      this.countriesValue.sort((a, b) => b.area - a.area),
+      this.countries$.getValue().sort((a, b) => b.area - a.area),
       3,
     );
   }
 
   getBestGDPCountries(): Country[] {
     return this.getSliced(
-      this.countriesValue.sort((a, b) => b.gdp - a.gdp),
+      this.countries$.getValue().sort((a, b) => b.gdp - a.gdp),
       3,
     );
   }
 
   saveCountry(name: string, value: Country): void {
-    this.countriesValue = this.countriesValue.map((country: Country) => {
-      if (country.name === name) {
-        return value;
-      }
+    this.countries$.next(
+      this.countries$.getValue().map((country: Country) => {
+        if (country.name === name) {
+          return value;
+        }
 
-      return country;
-    });
-    this.localStorageService.setItem(LocalStorageKey.CountriesData, this.countriesValue);
+        return country;
+      }),
+    );
   }
 
   addCountry(value: Country): void {
-    this.countriesValue.push(value);
-    this.localStorageService.setItem(LocalStorageKey.CountriesData, this.countriesValue);
+    this.countries$.next([...this.countries$.getValue(), value]);
   }
 
   deleteCountry(name: string): void {
-    this.countriesValue = this.countriesValue.filter(country => country.name !== name);
-  }
-
-  private get initialValue(): Country[] {
-    return this.localStorageService.getItem(LocalStorageKey.CountriesData) || countriesData;
+    this.countries$.next(this.countries$.getValue().filter(country => country.name !== name));
   }
 
   private getSliced(arr: Country[], nmb: number): Country[] {

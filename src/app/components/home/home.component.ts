@@ -15,9 +15,11 @@ export class HomeComponent implements OnInit {
   constructor(private countryService: CountryService) {}
 
   ngOnInit(): void {
-    this.setPopulatedCountries();
-    this.setLargestCountries();
-    this.setGDPCountries();
+    this.countryService.getCountries().subscribe(() => {
+      this.setPopulatedCountries();
+      this.setLargestCountries();
+      this.setGDPCountries();
+    });
   }
 
   setPopulatedCountries(): void {

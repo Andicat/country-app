@@ -36,7 +36,9 @@ export class CountryEditComponent {
       this.isAdding = data.mode === 'add' ? true : false;
     });
     this.getCountry();
-    this.getOtherCountries();
+    this.countryService.getCountries().subscribe(data => {
+      this.otherCountries = data.filter(country => country !== this.country);
+    });
     this.initForm();
   }
 
@@ -98,10 +100,6 @@ export class CountryEditComponent {
     if (country) {
       this.country = country;
     }
-  }
-
-  getOtherCountries(): void {
-    this.otherCountries = this.countryService.countries.filter(country => country !== this.country);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

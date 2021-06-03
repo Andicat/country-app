@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CountryService } from 'src/app/services/country.service';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './home.component';
 
@@ -11,7 +12,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientModule],
       providers: [{ provide: CountryService }],
     }).compileComponents();
   });

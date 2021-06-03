@@ -27,13 +27,13 @@ export class CountryValidator {
   }
 
   static number(control: AbstractControl): ValidationErrors | null {
-    const value = this.toNumber(control);
+    const value = CountryValidator.toNumber(control);
 
     return value && isNaN(Number(value)) ? { invalidValue: ValidationMessages.Number } : null;
   }
 
   static positiveNumber(control: AbstractControl): ValidationErrors | null {
-    const value = this.toNumber(control);
+    const value = CountryValidator.toNumber(control);
 
     return !CountryValidator.number(control) && value > 0 ? null : { invalidValue: ValidationMessages.PositiveNumber };
   }

@@ -1,6 +1,10 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CountryService } from 'src/app/services/country.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 import { CountryComponent } from './country.component';
 
@@ -10,9 +14,9 @@ describe('CountryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([])],
+      imports: [RouterTestingModule.withRoutes([]), HttpClientModule],
       declarations: [CountryComponent],
-      providers: [CountryService],
+      providers: [CountryService, SnackbarService, MatSnackBar, Overlay],
     }).compileComponents();
   });
 

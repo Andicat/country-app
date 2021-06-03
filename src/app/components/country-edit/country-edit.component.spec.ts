@@ -1,10 +1,16 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { DecimalPipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { Country } from 'src/app/interfaces/country';
 import { CountryService } from 'src/app/services/country.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 import { CountryEditComponent } from './country-edit.component';
 
@@ -15,6 +21,22 @@ const mockCountry: Country = {
   population: 144463451,
   currency: 'Russian Ruble',
   gdp: 1283162,
+};
+
+const countryServiceStub = {
+  getCountries: () => {
+    return of([]);
+  },
+  getCountry: () => {
+    return {};
+  },
+};
+
+const activatedRouteStub = {
+  snapshot: {
+    paramMap: convertToParamMap({ name: 'Russia' }),
+  },
+  data: of({}),
 };
 
 const mockCountryForm: FormGroup = new FormGroup({
@@ -32,19 +54,14 @@ describe('CountryEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, ReactiveFormsModule],
+      imports: [RouterTestingModule, ReactiveFormsModule, HttpClientModule],
       providers: [
-        { provide: CountryService },
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              paramMap: convertToParamMap({
-                name: 'Russia',
-              }),
-            },
-          },
-        },
+        { provide: CountryService, useValue: countryServiceStub },
+        { provide: ActivatedRoute, useValue: activatedRouteStub },
+        DecimalPipe,
+        SnackbarService,
+        MatSnackBar,
+        Overlay,
       ],
       declarations: [CountryEditComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -54,15 +71,11 @@ describe('CountryEditComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CountryEditComponent);
     component = fixture.componentInstance;
+    component.otherCountries = [];
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('countryForm should to equal new Form with params', () => {
-    component.ngOnInit();
-    expect(component.countryForm.value).toEqual(mockCountryForm.value);
   });
 });
