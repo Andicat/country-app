@@ -20,8 +20,8 @@ export class CountriesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countryService.getCountries().subscribe(data => {
-      this.countries = data;
+    this.countryService.getCountries().subscribe(result => {
+      this.countries = result;
     });
   }
 }

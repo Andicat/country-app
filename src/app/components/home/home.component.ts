@@ -23,14 +23,14 @@ export class HomeComponent implements OnInit {
   }
 
   setPopulatedCountries(): void {
-    this.populatedCountries = this.countryService.getPopulatedCountries();
+    this.countryService.getPopulatedCountries().subscribe(result => (this.populatedCountries = result));
   }
 
   setLargestCountries(): void {
-    this.largestCountries = this.countryService.getLargestCountries();
+    this.countryService.getLargestCountries().subscribe(result => (this.largestCountries = result));
   }
 
   setGDPCountries(): void {
-    this.gdpCountries = this.countryService.getBestGDPCountries();
+    this.countryService.getBestGDPCountries().subscribe(result => (this.gdpCountries = result));
   }
 }

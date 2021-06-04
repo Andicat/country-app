@@ -1,4 +1,4 @@
-<div class="container shadow-lg card mt-3 rounded">
+<div class="container shadow-lg card mt-3 rounded" *ngIf="countryForm">
   <form [formGroup]="countryForm" (submit)="submit(countryForm.value)" novalidate >
     <legend class="card-header font-weight-bold text-info" *ngIf="!isAdding">{{ country.name | uppercase }}</legend>
     <div class="form-group" *ngIf="isAdding">

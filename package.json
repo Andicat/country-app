@@ -12,7 +12,8 @@
     "stylelint-fix": "npm run stylelint -- --fix --quiet",
     "eslint": "eslint ./src --ext .ts,.js",
     "eslint-fix": "eslint ./src --ext .ts,.js --fix",
-    "htmlhint": "htmlhint ./src --config htmlhintrc.json"
+    "htmlhint": "htmlhint ./src --config htmlhintrc.json",
+    "test-code": "npm run eslint && npm run stylelint && npm run htmlhint"
   },
   "private": true,
   "dependencies": {

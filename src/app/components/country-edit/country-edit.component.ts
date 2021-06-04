@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe, Location } from '@angular/common';
 
 import { Language } from 'src/app/enums/language.enum';
@@ -8,6 +8,7 @@ import { Country } from 'src/app/interfaces/country';
 import { CountryService } from 'src/app/services/country.service';
 import { CountryValidator } from 'src/app/services/country-form-validator';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { ApplicationRoute } from 'src/app/enums/application-route';
 
 @Component({
   selector: 'country-edit',
@@ -25,6 +26,7 @@ export class CountryEditComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private countryService: CountryService,
     private location: Location,
     private decimalPipe: DecimalPipe,
@@ -33,13 +35,34 @@ export class CountryEditComponent {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
-      this.isAdding = data.mode === 'add' ? true : false;
+      if (data.mode === 'add') {
+        this.isAdding = true;
+        this.country = <Country>{};
+      }
     });
-    this.getCountry();
-    this.countryService.getCountries().subscribe(data => {
-      this.otherCountries = data.filter(country => country !== this.country);
+    this.countryService.getCountries().subscribe(result => {
+      if (result.length) {
+        if (!this.isAdding) {
+          this.getCountry();
+        }
+
+        this.otherCountries = result.filter(country => country !== this.country);
+        if (this.country) {
+          this.initForm();
+        }
+      }
     });
-    this.initForm();
+  }
+
+  getCountry(): void {
+    this.name = this.activatedRoute.snapshot.paramMap.get('name') || '';
+    this.countryService.getCountry(this.name).subscribe(result => {
+      if (result) {
+        this.country = result;
+      } else {
+        this.router.navigate([ApplicationRoute.PageNotFound]);
+      }
+    });
   }
 
   initForm(): void {
@@ -84,22 +107,6 @@ export class CountryEditComponent {
       }
     });
     this.countryForm.updateValueAndValidity();
-  }
-
-  getCountry(): void {
-    if (this.isAdding) {
-      this.country = <Country>{};
-
-      return;
-    }
-
-    this.name = this.activatedRoute.snapshot.paramMap.get('name') || '';
-
-    const country = this.countryService.getCountry(this.name);
-
-    if (country) {
-      this.country = country;
-    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

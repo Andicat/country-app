@@ -38,7 +38,7 @@ const activatedRouteStub = {
   },
   data: of({}),
 };
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
 const mockCountryForm: FormGroup = new FormGroup({
   capital: new FormControl(mockCountry.capital),
   area: new FormControl(mockCountry.area),
