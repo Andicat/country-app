@@ -3,12 +3,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe, Location } from '@angular/common';
 
-import { Language } from 'src/app/enums/language.enum';
 import { Country } from 'src/app/interfaces/country';
-import { CountryService } from 'src/app/services/country.service';
 import { CountryValidator } from 'src/app/services/country-form-validator';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ApplicationRoute } from 'src/app/enums/application-route';
+import { CountryService } from 'src/app/services/country.service';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'country-edit',
@@ -22,12 +22,13 @@ export class CountryEditComponent {
   name: string;
   country: Country;
   otherCountries: Country[];
-  languages = Object.keys(Language);
+  languages: string[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private countryService: CountryService,
+    private languageService: LanguageService,
     private location: Location,
     private decimalPipe: DecimalPipe,
     private snackbarService: SnackbarService,
@@ -39,6 +40,9 @@ export class CountryEditComponent {
         this.isAdding = true;
         this.country = <Country>{};
       }
+    });
+    this.languageService.getLanguages().subscribe(data => {
+      this.languages = data.sort();
     });
     this.countryService.getCountries().subscribe(result => {
       if (result.length) {
@@ -82,7 +86,7 @@ export class CountryEditComponent {
         CountryValidator.minNumber(1),
         CountryValidator.maxNumber(1500000000),
       ]),
-      gdp: new FormControl(this.country.gdp, CountryValidator.positiveNumber),
+      region: new FormControl(this.country.region, CountryValidator.words),
       currency: new FormControl(this.country.currency, CountryValidator.words),
       languages: new FormControl(this.country.languages),
     });
@@ -101,10 +105,6 @@ export class CountryEditComponent {
           { emitEvent: false },
         );
       }
-
-      if (form.gdp) {
-        this.countryForm.patchValue({ gdp: this.decimalPipe.transform(this.toNumber(form.gdp)) }, { emitEvent: false });
-      }
     });
     this.countryForm.updateValueAndValidity();
   }
@@ -113,7 +113,6 @@ export class CountryEditComponent {
   submit(value: any): void {
     value.area = this.toNumber(value.area);
     value.population = this.toNumber(value.population);
-    value.gdp = this.toNumber(value.gdp);
     if (this.isAdding) {
       this.countryService.addCountry(Object.assign(this.country, value));
     } else {

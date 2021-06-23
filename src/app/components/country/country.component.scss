@@ -11,4 +11,26 @@ h2 {
 .card-header {
   display: flex;
   align-items: center;
+
+  img {
+    width: 40px;
+    height: 25px;
+    border-radius: 2px;
+    margin-right: 10px;
+  }
+}
+
+.dark-theme {
+  .btn {
+    filter: brightness(70%);
+  }
+  .card {
+    background-color: #666666 !important;
+    color: black !important;
+
+    &:hover,
+    &:focus {
+      background-color: #888888 !important;
+    }
+  }
 }

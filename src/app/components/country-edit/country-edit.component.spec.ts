@@ -20,7 +20,7 @@ const mockCountry: Country = {
   area: 17098246,
   population: 144463451,
   currency: 'Russian Ruble',
-  gdp: 1283162,
+  region: 1283162,
 };
 
 const countryServiceStub = {
@@ -43,7 +43,7 @@ const mockCountryForm: FormGroup = new FormGroup({
   capital: new FormControl(mockCountry.capital),
   area: new FormControl(mockCountry.area),
   population: new FormControl(mockCountry.population),
-  gdp: new FormControl(mockCountry.gdp),
+  region: new FormControl(mockCountry.region),
   currency: new FormControl(mockCountry.currency),
   languages: new FormControl(mockCountry.languages),
 });

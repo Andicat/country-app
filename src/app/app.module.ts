@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,12 +14,16 @@ import { CountryEditComponent } from './components/country-edit/country-edit.com
 import { ListPipe } from './pipes/list.pipe';
 import { CountryService } from './services/country.service';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { ViewModeService } from './services/view-mode.service';
 import { DecimalPipe } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { SnackbarService } from './services/snackbar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalStorageService } from './services/local-storage.service';
+import { LanguageService } from './services/language.service';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { ChartComponent } from './components/chart/chart.component';
+import { ColorThemeDirective } from './directives/color-theme.directive';
+import { ColorThemeService } from './services/color-theme.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { LocalStorageService } from './services/local-storage.service';
     CountryEditComponent,
     ListPipe,
     NotFoundPageComponent,
+    ChartComponent,
+    ColorThemeDirective,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,20 @@ import { LocalStorageService } from './services/local-storage.service';
     OverlayModule,
     BrowserAnimationsModule,
   ],
-  providers: [CountryService, ViewModeService, DecimalPipe, SnackbarService, MatSnackBar, LocalStorageService],
+  providers: [
+    CountryService,
+    LanguageService,
+    DecimalPipe,
+    SnackbarService,
+    MatSnackBar,
+    ColorThemeService,
+    LocalStorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

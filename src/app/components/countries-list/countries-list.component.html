@@ -1,6 +1,6 @@
-<div class="container">
+<div color-theme class="container">
   <h2>List of All the Countries in Our Database</h2>
-  <view-mode-button [(mode)]="viewModeService.mode"></view-mode-button>
+  <view-mode-button [(mode)]="viewMode" [modes]="viewModes" (modeChange)="modeChanged()"></view-mode-button>
   <a href="#" class="btn btn-primary ms-3" routerLink="/countries/add">Add new country</a>
   <ng-container *ngTemplateOutlet="tableView ? table : cards"></ng-container>
 </div>
@@ -8,7 +8,10 @@
 <ng-template #cards>
   <div class="d-flex flex-wrap justify-content-center mt-3">
     <a class="card text-white bg-info shadow" *ngFor="let country of countries" routerLink="/countries/{{country.name}}">
-      <div class="card-header">{{country.name}}</div>
+      <div class="card-header">
+        <span>{{country.name}}</span>
+        <img [src]="country.flag" alt="country.name" />
+      </div>
       <div class="card-body">
         <p class="card-text">Capital: {{country.capital}}</p>
       </div>
@@ -17,10 +20,11 @@
 </ng-template>
 
 <ng-template #table>
-  <div class="shadow-lg mt-4 rounded">
+  <div class="shadow-lg mt-4">
     <table class="table">
       <thead>
         <tr class="text-info">
+          <th>Flag</th>
           <th>Name</th>
           <th>Capital</th>
           <th>Population</th>
@@ -29,6 +33,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let country of countries">
+          <td>
+            <img [src]="country.flag" alt="country.name" />
+          </td>
           <td>
             <a routerLink="/countries/{{country.name}}">{{country.name}}</a>
           </td>

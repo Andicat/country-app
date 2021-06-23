@@ -1,34 +1,35 @@
-<div class="container">
+<div color-theme class="container">
   <div class="card mt-3" *ngIf="country">
-    <div class="card-header font-weight-bold text-info">
+    <div class="card-header font-weight-bold">
+      <img [src]="country.flag" alt="country.name" />
       <span class="me-auto">{{ country.name | uppercase }}</span>
       <a href="#" class="btn btn-primary me-3" routerLink="/countries/{{country.name}}/edit">Edit</a>
       <button class="btn btn-danger" (click)="deleteCountry()">Delete</button>
     </div>
     <div class="card-body">
-      <p class="card-text row">
+      <p class="card-text row flex-nowrap">
         <span class="col-4 font-weight-bold">Capital:</span>
-        <span class="col-auto">{{country.capital}}</span>
+        <span class="col-auto flex-shrink-1">{{country.capital}}</span>
       </p>
-      <p class="card-text row">
+      <p class="card-text row flex-nowrap">
         <span class="col-4 font-weight-bold"> Area: </span>
-        <span class="col-auto">{{country.area | number}} km<sup>2</sup></span>
+        <span class="col-auto flex-shrink-1">{{country.area | number}} km<sup>2</sup></span>
       </p>
-      <p class="card-text row">
+      <p class="card-text row flex-nowrap">
         <span class="col-4 font-weight-bold"> Population: </span>
-        <span class="col-auto">{{country.population | number}}</span>
+        <span class="col-auto flex-shrink-1">{{country.population | number}}</span>
       </p>
-      <p class="card-text row">
-        <span class="col-4 font-weight-bold"> GDP: </span>
-        <span class="col-auto">{{country.gdp | number}} USD</span>
+      <p class="card-text row flex-nowrap">
+        <span class="col-4 font-weight-bold"> Region: </span>
+        <span class="col-auto flex-shrink-1">{{country.region}}</span>
       </p>
-      <p class="card-text row">
+      <p class="card-text row flex-nowrap">
         <span class="col-4 font-weight-bold"> Currency: </span>
-        <span class="col-auto">{{country.currency}}</span>
+        <span class="col-auto flex-shrink-1">{{country.currency}}</span>
       </p>
-      <p class="card-text row">
+      <p class="card-text row flex-nowrap">
         <span class="col-4 font-weight-bold"> Languages: </span>
-        <span class="col-auto">{{country.languages | list}}</span>
+        <span class="col-auto flex-shrink-1">{{country.languages | list}}</span>
       </p>
     </div>
   </div>

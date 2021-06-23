@@ -1,18 +1,29 @@
-<div class="container">
-  <h2>Three Most Populated Countries</h2>
+<div color-theme class="container">
+  <view-mode-button [(mode)]="viewMode" [modes]="viewModes" (modeChange)="modeChanged()"></view-mode-button>
+  <ng-container *ngTemplateOutlet="chartsView ? charts : cards"></ng-container>
+</div>
+
+<ng-template #cards>
+  <h2>Populated Countries</h2>
   <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
     <a class="card text-white bg-warning shadow" *ngFor="let country of populatedCountries" routerLink="/countries/{{country.name}}">
-      <div class="card-header">{{country.name}}</div>
+      <div class="card-header">
+        <span>{{country.name}}</span>
+        <img [src]="country.flag" alt="country.name" />
+      </div>
       <div class="card-body">
         <p class="card-text">{{country.population | number}}</p>
         <p class="card-text">People</p>
       </div>
     </a>
   </div>
-  <h2>Three Largest Countries (Area)</h2>
+  <h2>Largest Countries (Area)</h2>
   <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
     <a class="card text-white bg-info shadow" *ngFor="let country of largestCountries" routerLink="/countries/{{country.name}}">
-      <div class="card-header">{{country.name}}</div>
+      <div class="card-header">
+        <span>{{country.name}}</span>
+        <img [src]="country.flag" alt="country.name" />
+      </div>
       <div class="card-body">
         <p class="card-text">{{country.area | number}} km
           <sup>2</sup>
@@ -20,13 +31,28 @@
       </div>
     </a>
   </div>
-  <h2>Countries with Highest GDP</h2>
+  <h2>Countries with largest count of languages</h2>
   <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
-    <a class="card text-white bg-danger shadow" *ngFor="let country of gdpCountries" routerLink="/countries/{{country.name}}">
-      <div class="card-header">{{country.name}}</div>
+    <a class="card text-white bg-danger shadow" *ngFor="let country of multiLanguagesCountries" routerLink="/countries/{{country.name}}">
+      <div class="card-header">
+        <span>{{country.name}}</span>
+        <img [src]="country.flag" alt="country.name" />
+      </div>
       <div class="card-body">
-        <p class="card-text">{{country.gdp | number}} USD</p>
+        <p class="card-text">{{country.languages.length}} </p>
+        <p class="card-text">{{country.languages.join(', ')}} </p>
       </div>
     </a>
   </div>
-</div>
+</ng-template>
+
+<ng-template #charts>
+  <div class="d-flex flex-wrap justify-content-center mt-3 mb-3">
+    <div class="chart-card shadow rounded mt-2 mb-2 ms-2 me-2">
+      <chart *ngIf="populatedCountriesChartData" [data]="populatedCountriesChartData"></chart>
+    </div>
+    <div class="chart-card shadow rounded mt-2 mb-2 ms-2 me-2">
+      <chart *ngIf="largestCountriesChartData" [data]="largestCountriesChartData"></chart>
+    </div>
+  </div>
+</ng-template>

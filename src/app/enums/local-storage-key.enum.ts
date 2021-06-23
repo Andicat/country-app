@@ -1,4 +1,6 @@
 export enum LocalStorageKey {
-  ViewMode = 'viewMode',
+  ViewModeHome = 'viewModeHome',
+  ViewModeList = 'viewModeList',
+  Theme = 'theme',
   CountriesData = 'countriesData',
 }

@@ -1,6 +1,6 @@
-<div class="container shadow-lg card mt-3 rounded" *ngIf="countryForm">
+<div color-theme class="edit-card container shadow-lg mt-3 rounded" *ngIf="countryForm">
   <form [formGroup]="countryForm" (submit)="submit(countryForm.value)" novalidate >
-    <legend class="card-header font-weight-bold text-info" *ngIf="!isAdding">{{ country.name | uppercase }}</legend>
+    <legend class="card-header font-weight-bold" *ngIf="!isAdding">{{ country.name | uppercase }}</legend>
     <div class="form-group" *ngIf="isAdding">
       <label for="name">Name</label>
       <input class="form-control" id="name" name="name" formControlName="name"  autocomplete="off" />
@@ -22,9 +22,9 @@
       <div class="form-error mt-1" *ngIf="countryForm.controls['population'].touched">{{countryForm.controls["population"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
-      <label for="gdp">GDP, USD</label>
-      <input class="form-control" id="gdp" name="gdp" formControlName="gdp" autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['gdp'].touched">{{countryForm.controls["gdp"].getError("invalidValue")}}</div>
+      <label for="region">Region</label>
+      <input class="form-control" id="region" name="region" formControlName="region" autocomplete="off" />
+      <div class="form-error mt-1" *ngIf="countryForm.controls['region'].touched">{{countryForm.controls["region"].getError("invalidValue")}}</div>
     </div>
     <div class="form-group">
       <label for="currency">Currency</label>
