@@ -35,7 +35,8 @@
     "highcharts": "^9.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.0.0",
@@ -66,8 +67,5 @@
     "stylelint-scss": "^3.18.0",
     "tslib": "1.10.0",
     "typescript": "~4.2.3"
-  },
-  "peerDependencies": {
-    "lodash": "^4.17.20"
   }
 }

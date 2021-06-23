@@ -33,9 +33,11 @@ form {
 }
 
 .dark-theme {
-  background-color: #666666;
-  color: black;
-  border-color: #222222;
+  .edit-card {
+    background-color: #666666;
+    color: black;
+    border-color: #222222;
+  }
 
   .btn {
     filter: brightness(70%);

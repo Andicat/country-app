@@ -1,51 +1,53 @@
-<div color-theme class="edit-card container shadow-lg mt-3 rounded" *ngIf="countryForm">
-  <form [formGroup]="countryForm" (submit)="submit(countryForm.value)" novalidate >
-    <legend class="card-header font-weight-bold" *ngIf="!isAdding">{{ country.name | uppercase }}</legend>
-    <div class="form-group" *ngIf="isAdding">
-      <label for="name">Name</label>
-      <input class="form-control" id="name" name="name" formControlName="name"  autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['name'].touched">{{countryForm.controls["name"].getError("invalidValue")}}</div>
-    </div>
-    <div class="form-group">
-      <label for="capital">Capital</label>
-      <input class="form-control" id="capital" name="capital" formControlName="capital"  autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['capital'].touched">{{countryForm.controls["capital"].getError("invalidValue")}}</div>
-    </div>
-    <div class="form-group">
-      <label for="area">Area, km<sup>2</sup></label>
-      <input class="form-control" id="area" name="area" formControlName="area" autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['area'].touched">{{countryForm.controls["area"].getError("invalidValue")}}</div>
-    </div>
-    <div class="form-group">
-      <label for="population">Population, people</label>
-      <input class="form-control" id="population" name="population" formControlName="population" autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['population'].touched">{{countryForm.controls["population"].getError("invalidValue")}}</div>
-    </div>
-    <div class="form-group">
-      <label for="region">Region</label>
-      <input class="form-control" id="region" name="region" formControlName="region" autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['region'].touched">{{countryForm.controls["region"].getError("invalidValue")}}</div>
-    </div>
-    <div class="form-group">
-      <label for="currency">Currency</label>
-      <input class="form-control" id="currency" name="currency" formControlName="currency" autocomplete="off" />
-      <div class="form-error mt-1" *ngIf="countryForm.controls['currency'].touched">{{countryForm.controls["currency"].getError("invalidValue")}}</div>
-    </div>
-    <div class="form-group">
-      <label for="languages">Languages</label>
-      <ng-select
-        id="languages"
-        [items]="languages"
-        [multiple]="true"
-        [hideSelected]="true"
-        formControlName="languages"
-        ngDefaultControl
-      >
-      </ng-select>
-    </div>
-    <div class="form-group mt-3">
-        <button type="submit" class="btn btn-primary me-3" [disabled]="countryForm.invalid">{{isAdding ? 'Add' : 'Save'}}</button>
-        <button type="reset" class="btn btn-primary" (click)="goBack()">Go Back</button>
-    </div>
-  </form>
+<div color-theme class="container">
+  <div class="edit-card shadow-lg mt-3 rounded" *ngIf="countryForm">
+    <form [formGroup]="countryForm" (submit)="submit(countryForm.value)" novalidate >
+      <legend class="card-header font-weight-bold" *ngIf="!isAdding">{{ country.name | uppercase }}</legend>
+      <div class="form-group" *ngIf="isAdding">
+        <label for="name">Name</label>
+        <input class="form-control" id="name" name="name" formControlName="name"  autocomplete="off" />
+        <div class="form-error mt-1" *ngIf="countryForm.controls['name'].touched">{{countryForm.controls["name"].getError("invalidValue")}}</div>
+      </div>
+      <div class="form-group">
+        <label for="capital">Capital</label>
+        <input class="form-control" id="capital" name="capital" formControlName="capital"  autocomplete="off" />
+        <div class="form-error mt-1" *ngIf="countryForm.controls['capital'].touched">{{countryForm.controls["capital"].getError("invalidValue")}}</div>
+      </div>
+      <div class="form-group">
+        <label for="area">Area, km<sup>2</sup></label>
+        <input class="form-control" id="area" name="area" formControlName="area" autocomplete="off" />
+        <div class="form-error mt-1" *ngIf="countryForm.controls['area'].touched">{{countryForm.controls["area"].getError("invalidValue")}}</div>
+      </div>
+      <div class="form-group">
+        <label for="population">Population, people</label>
+        <input class="form-control" id="population" name="population" formControlName="population" autocomplete="off" />
+        <div class="form-error mt-1" *ngIf="countryForm.controls['population'].touched">{{countryForm.controls["population"].getError("invalidValue")}}</div>
+      </div>
+      <div class="form-group">
+        <label for="region">Region</label>
+        <input class="form-control" id="region" name="region" formControlName="region" autocomplete="off" />
+        <div class="form-error mt-1" *ngIf="countryForm.controls['region'].touched">{{countryForm.controls["region"].getError("invalidValue")}}</div>
+      </div>
+      <div class="form-group">
+        <label for="currency">Currency</label>
+        <input class="form-control" id="currency" name="currency" formControlName="currency" autocomplete="off" />
+        <div class="form-error mt-1" *ngIf="countryForm.controls['currency'].touched">{{countryForm.controls["currency"].getError("invalidValue")}}</div>
+      </div>
+      <div class="form-group">
+        <label for="languages">Languages</label>
+        <ng-select
+          id="languages"
+          [items]="languages"
+          [multiple]="true"
+          [hideSelected]="true"
+          formControlName="languages"
+          ngDefaultControl
+        >
+        </ng-select>
+      </div>
+      <div class="form-group mt-3">
+          <button type="submit" class="btn btn-primary me-3" [disabled]="countryForm.invalid">{{isAdding ? 'Add' : 'Save'}}</button>
+          <button type="reset" class="btn btn-primary" (click)="goBack()">Go Back</button>
+      </div>
+    </form>
+  </div>
 </div>
